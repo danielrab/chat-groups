@@ -14,7 +14,6 @@
 import { registerSettings } from './settings';
 import { preloadTemplates } from './preloadTemplates';
 import { showGroupsDialog } from './groups-dialog';
-import { MessageData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/foundry.js/roll';
 
 // Initialize module
 Hooks.once('init', async () => {

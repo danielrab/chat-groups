@@ -6,10 +6,10 @@ export function showGroupsDialog(groups = [1, 2]) {
         `<tr>` +
         groups
           .map(
-            (g) => `
+            (g, i) => `
             <td>
               <input type="radio" id="group-${g}-${user.id}" name="${user.id}" value="${g}"
-            checked>
+            ${i === 0 ? 'checked' : ''}>
               <label for="group-${g}-${user.id}">${user.name}</label>
             <td>`,
           )
