@@ -1,3 +1,7 @@
 export function registerSettings(): void {
-  // Register any custom module settings here
+  (game as Game).settings.register('chat-groups', 'groups', {
+    default: {},
+    type: Object,
+    scope: 'world',
+  });
 }

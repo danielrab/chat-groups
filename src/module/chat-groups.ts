@@ -13,6 +13,8 @@
 // Import TypeScript modules
 import { registerSettings } from './settings';
 import { preloadTemplates } from './preloadTemplates';
+import { showGroupsDialog } from './groups-dialog';
+import { MessageData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/foundry.js/roll';
 
 // Initialize module
 Hooks.once('init', async () => {
@@ -29,15 +31,14 @@ Hooks.once('init', async () => {
   // Register custom sheets (if any)
 });
 
-// Setup module
-Hooks.once('setup', async () => {
-  // Do anything after initialization but before
-  // ready
+Hooks.on('chatMessage', (log: unknown, content: unknown, message: any) => {
+  const groups = <Record<string, string>>(game as Game).settings.get('chat-groups', 'groups');
+  const myGroup = groups[(game as Game).user!.id];
+  if (!myGroup) return;
+  message.whisper = (game as Game).users!.map((u) => u.id).filter((id) => groups[id] === myGroup);
+  message.type = 4;
 });
 
-// When ready
-Hooks.once('ready', async () => {
-  // Do anything once the module is ready
-});
-
-// Add any additional hooks if necessary
+(window as any).ChatGroups = {
+  showGroupsDialog,
+};
