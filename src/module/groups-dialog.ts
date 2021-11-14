@@ -1,5 +1,5 @@
 export function showGroupsDialog(groups = [1, 2]) {
-  const header = `<tr>` + groups.map((g) => `<th>Group${g}<th>`).join('') + `</tr>`;
+  const header = `<tr>` + groups.map((g) => `<th>Group ${g}<th>`).join('') + `</tr>`;
   const tableContent = (game as Game)
     .users!.map(
       (user) =>
